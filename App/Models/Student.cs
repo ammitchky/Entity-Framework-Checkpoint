@@ -14,6 +14,6 @@ namespace App.Models
         public string LastName { get; set; }
         public int Age { get; set; }
         public SchoolYear Classification { get; set; }
-        public List<Grade> GradeList { get; set; }
+        public ICollection<Grade> Grades { get; set; }
     }
 }

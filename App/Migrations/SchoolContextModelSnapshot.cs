@@ -99,6 +99,13 @@ namespace App.Migrations
                             CourseGrade = 65f,
                             CourseName = "Art 301",
                             StudentId = 4
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CourseGrade = 88.8f,
+                            CourseName = "Precalculus 301",
+                            StudentId = 6
                         });
                 });
 
@@ -156,21 +163,39 @@ namespace App.Migrations
                             Classification = 1,
                             FirstName = "Audrey",
                             LastName = "White"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Age = 14,
+                            Classification = 0,
+                            FirstName = "Andrew",
+                            LastName = "Neuton"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Age = 17,
+                            Classification = 1,
+                            FirstName = "Thomas",
+                            LastName = "Reetin"
                         });
                 });
 
             modelBuilder.Entity("App.Models.Grade", b =>
                 {
-                    b.HasOne("App.Models.Student", null)
-                        .WithMany("GradeList")
+                    b.HasOne("App.Models.Student", "Student")
+                        .WithMany("Grades")
                         .HasForeignKey("StudentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Student");
                 });
 
             modelBuilder.Entity("App.Models.Student", b =>
                 {
-                    b.Navigation("GradeList");
+                    b.Navigation("Grades");
                 });
 #pragma warning restore 612, 618
         }

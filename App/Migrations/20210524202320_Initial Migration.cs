@@ -2,7 +2,7 @@
 
 namespace App.Migrations
 {
-    public partial class Initialdbsetup : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -28,9 +28,9 @@ namespace App.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    StudentId = table.Column<int>(type: "INTEGER", nullable: false),
                     CourseName = table.Column<string>(type: "TEXT", nullable: true),
-                    CourseGrade = table.Column<float>(type: "REAL", nullable: false)
+                    CourseGrade = table.Column<float>(type: "REAL", nullable: false),
+                    StudentId = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -62,6 +62,16 @@ namespace App.Migrations
                 table: "Students",
                 columns: new[] { "Id", "Age", "Classification", "FirstName", "LastName" },
                 values: new object[] { 4, 14, 1, "Audrey", "White" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Age", "Classification", "FirstName", "LastName" },
+                values: new object[] { 5, 14, 0, "Andrew", "Neuton" });
+
+            migrationBuilder.InsertData(
+                table: "Students",
+                columns: new[] { "Id", "Age", "Classification", "FirstName", "LastName" },
+                values: new object[] { 6, 17, 1, "Thomas", "Reetin" });
 
             migrationBuilder.InsertData(
                 table: "Grades",
@@ -107,6 +117,11 @@ namespace App.Migrations
                 table: "Grades",
                 columns: new[] { "Id", "CourseGrade", "CourseName", "StudentId" },
                 values: new object[] { 9, 65f, "Art 301", 4 });
+
+            migrationBuilder.InsertData(
+                table: "Grades",
+                columns: new[] { "Id", "CourseGrade", "CourseName", "StudentId" },
+                values: new object[] { 10, 88.8f, "Precalculus 301", 6 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Grades_StudentId",
